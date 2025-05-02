@@ -8,10 +8,9 @@ description: Provides a toolbar button on the Requirement Details page to naviga
 productSummary: Open related Confluence page. # <-- CHANGED
 productDescription: Allows users to quickly navigate from a Spira Requirement to its corresponding Confluence page using a configurable URL template.
 author: Your Simplified Company Name
-url: https://yourcompany.com/docs/spiraapp/confluence # <-- CHANGED: Updated help URL path
-license: MIT
-copyright: Copyright Your Company Year
-version: 0.3.0 # <-- Incremented version again
+url: https://spiradoc.inflectra.com/SpiraApps/ # <-- CHANGED: Updated help URL path
+copyright: 2025
+version: 0.0.1 # <-- Incremented version again
 
 # System-wide settings (Optional Base URL)
 settings:
