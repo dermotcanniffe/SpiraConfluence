@@ -1,21 +1,21 @@
 # --- manifest.yaml (Simpler URL Linking Version) ---
 # REMEMBER TO GENERATE YOUR OWN UNIQUE GUID!
 guid: 6b1677d2-6e91-4e2c-85ae-79d4dbb09e8f
-name: ConfluenceQuickLinker
-caption: Confluence Quick Linker
+name: Confluence # <-- CHANGED: Code-friendly name
+caption: Confluence # <-- CHANGED: User-facing name
 summary: Adds a button to Requirements to open a related Confluence page.
-description: Provides a toolbar button on the Requirement Details page to navigate the user to a pre-defined Confluence URL pattern, based on the Requirement ID. Requires configuration of the URL pattern.
-productSummary: Open related Confluence page for Requirements.
+description: Provides a toolbar button on the Requirement Details page to navigate the user to a Confluence page using a configured URL pattern based on the Requirement ID.
+productSummary: Open related Confluence page. # <-- CHANGED
 productDescription: Allows users to quickly navigate from a Spira Requirement to its corresponding Confluence page using a configurable URL template.
 author: Your Simplified Company Name
-url: https://yourcompany.com/docs/spiraapp/confluence-quicklinker # <-- Update help URL
-license: MIT # Or whatever license you prefer
+url: https://yourcompany.com/docs/spiraapp/confluence # <-- CHANGED: Updated help URL path
+license: MIT
 copyright: Copyright Your Company Year
-version: 0.2.0 # Incremented version
+version: 0.3.0 # <-- Incremented version again
 
-# System-wide settings (Just the base URL now)
+# System-wide settings (Optional Base URL)
 settings:
-  - settingTypeId: 1 # Plain text
+  - settingTypeId: 1
     name: confluenceBaseUrl
     caption: Confluence Base URL (Optional if included in Template)
     isSecure: false
@@ -25,7 +25,7 @@ settings:
 
 # Product-specific settings (How to build the URL)
 productSettings:
-  - settingTypeId: 1 # Plain text
+  - settingTypeId: 1
     name: confluenceUrlTemplate
     caption: Confluence URL Template
     position: 1
@@ -35,20 +35,20 @@ productSettings:
 # Where the JavaScript runs
 pageContents:
   - pageId: 9 # Requirement Details page
-    name: confluenceQuickLinkerCode
-    code: file://confluence_quicklinker.js # <-- Name of your new JS file
+    name: confluenceCode # <-- CHANGED: Internal name
+    code: file://confluence.js # <-- CHANGED: JS Filename
 
 # The button on the Requirement Details page toolbar
 menus:
-  - pageId: 9 # Requirement Details page
-    caption: Confluence # Button text/group
-    icon: fa-brands fa-confluence # FontAwesome 6 Pro icon
+  - pageId: 9
+    caption: Confluence # Top-level button text - kept as is, seems appropriate
+    icon: fa-brands fa-confluence
     isActive: true
     entries:
-      - name: openConfluenceLink # Internal name, matches JS registration
-        caption: Open Confluence Link # Text in the dropdown
+      - name: openConfluenceLink # Internal name for the action - kept as is
+        caption: Open Confluence Link # Text in the dropdown - kept as is
         tooltip: Navigates to the related Confluence page for this Requirement
-        icon: fa-regular fa-share-from-square # Changed icon maybe?
+        icon: fa-regular fa-share-from-square
         isActive: true
-        actionTypeId: 2 # 2 = Execute JavaScript Function
-        action: openConfluenceLink # Name of the function JS will register
+        actionTypeId: 2
+        action: openConfluenceLink # Name of the function JS will register - kept as is
