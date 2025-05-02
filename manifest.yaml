@@ -2,7 +2,7 @@
 # REMEMBER TO GENERATE YOUR OWN UNIQUE GUID!
 guid: 6b1677d2-6e91-4e2c-85ae-79d4dbb09e8f
 name: Confluence # <-- CHANGED: Code-friendly name
-caption: Confluence # <-- CHANGED: User-facing name
+caption: Confluence
 summary: Adds a button to Requirements to open a related Confluence page.
 description: Provides a toolbar button on the Requirement Details page to navigate the user to a Confluence page using a configured URL pattern based on the Requirement ID.
 productSummary: Open related Confluence page. # <-- CHANGED
@@ -11,26 +11,38 @@ author: Inflectra Corporation
 url: https://spiradoc.inflectra.com/SpiraApps/ # <-- CHANGED: Updated help URL path
 license: MIT
 copyright: Inflectra Corporation 2025
-version: 0.0.1 # <-- Incremented version again
+version: 0.1 # <-- Incremented version again
 
 # System-wide settings (Optional Base URL)
 settings:
   - settingTypeId: 1
     name: confluenceBaseUrl
-    caption: Confluence Base URL (Optional if included in Template)
+    caption: Confluence Base URL (Optional)
     isSecure: false
     placeholder: https://your-confluence-instance.atlassian.net
     position: 1
     tooltip: The base URL for Confluence. Can be omitted if the full URL is in the Product Setting Template.
 
-# Product-specific settings (How to build the URL)
+# Product-specific settings
 productSettings:
-  - settingTypeId: 1
-    name: confluenceUrlTemplate
-    caption: Confluence URL Template
-    position: 1
-    placeholder: e.g., {baseUrl}/wiki/display/SPACE/{reqId}
-    tooltip: The URL pattern to use. Use {baseUrl} for the system setting Base URL (if configured), and {reqId} for the Spira Requirement ID.
+  - settingTypeId: 1 # Plain text
+    name: confluenceLinkFieldName
+    caption: Confluence Link Custom Field Name
+    position: 1 # Make this first? Or after space/parent settings? Your choice.
+    placeholder: e.g., Custom_05
+    tooltip: Enter the exact field name (e.g., Custom_05) of the Requirement custom property that stores the existing Confluence page URL. (Required)
+  - settingTypeId: 1 # Plain text
+    name: confluenceSpaceKey
+    # ... (keep this setting as before)
+    position: 2
+  - settingTypeId: 4 # Integer
+    name: confluenceParentPageId
+    # ... (keep this setting as before)
+    position: 3
+  - settingTypeId: 1 # Plain text
+    name: confluenceCreatePath
+    # ... (keep this setting as before)
+    position: 4
 
 # Where the JavaScript runs
 pageContents:
