@@ -1,0 +1,54 @@
+# --- manifest.yaml (Simpler URL Linking Version) ---
+# REMEMBER TO GENERATE YOUR OWN UNIQUE GUID!
+guid: 6b1677d2-6e91-4e2c-85ae-79d4dbb09e8f
+name: ConfluenceQuickLinker
+caption: Confluence Quick Linker
+summary: Adds a button to Requirements to open a related Confluence page.
+description: Provides a toolbar button on the Requirement Details page to navigate the user to a pre-defined Confluence URL pattern, based on the Requirement ID. Requires configuration of the URL pattern.
+productSummary: Open related Confluence page for Requirements.
+productDescription: Allows users to quickly navigate from a Spira Requirement to its corresponding Confluence page using a configurable URL template.
+author: Your Simplified Company Name
+url: https://yourcompany.com/docs/spiraapp/confluence-quicklinker # <-- Update help URL
+license: MIT # Or whatever license you prefer
+copyright: Copyright Your Company Year
+version: 0.2.0 # Incremented version
+
+# System-wide settings (Just the base URL now)
+settings:
+  - settingTypeId: 1 # Plain text
+    name: confluenceBaseUrl
+    caption: Confluence Base URL (Optional if included in Template)
+    isSecure: false
+    placeholder: https://your-confluence-instance.atlassian.net
+    position: 1
+    tooltip: The base URL for Confluence. Can be omitted if the full URL is in the Product Setting Template.
+
+# Product-specific settings (How to build the URL)
+productSettings:
+  - settingTypeId: 1 # Plain text
+    name: confluenceUrlTemplate
+    caption: Confluence URL Template
+    position: 1
+    placeholder: e.g., {baseUrl}/wiki/display/SPACE/{reqId}
+    tooltip: The URL pattern to use. Use {baseUrl} for the system setting Base URL (if configured), and {reqId} for the Spira Requirement ID.
+
+# Where the JavaScript runs
+pageContents:
+  - pageId: 9 # Requirement Details page
+    name: confluenceQuickLinkerCode
+    code: file://confluence_quicklinker.js # <-- Name of your new JS file
+
+# The button on the Requirement Details page toolbar
+menus:
+  - pageId: 9 # Requirement Details page
+    caption: Confluence # Button text/group
+    icon: fa-brands fa-confluence # FontAwesome 6 Pro icon
+    isActive: true
+    entries:
+      - name: openConfluenceLink # Internal name, matches JS registration
+        caption: Open Confluence Link # Text in the dropdown
+        tooltip: Navigates to the related Confluence page for this Requirement
+        icon: fa-regular fa-share-from-square # Changed icon maybe?
+        isActive: true
+        actionTypeId: 2 # 2 = Execute JavaScript Function
+        action: openConfluenceLink # Name of the function JS will register
