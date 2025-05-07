@@ -13,36 +13,42 @@ license: MIT
 copyright: Inflectra Corporation 2025
 version: 0.1 # <-- Incremented version again
 
-# System-wide settings (Optional Base URL)
+# System-wide settings for the SpiraApp
 settings:
-  - settingTypeId: 1
+  - settingTypeId: 1 # Plain text
     name: confluenceBaseUrl
-    caption: Confluence Base URL (Optional)
+    caption: Confluence Base URL (Optional) # Max 50 chars!
     isSecure: false
-    placeholder: https://your-confluence-instance.atlassian.net
+    placeholder: https://your-instance.atlassian.net
     position: 1
-    tooltip: The base URL for Confluence. Can be omitted if the full URL is in the Product Setting Template.
+    tooltip: The base URL of your Confluence instance (e.g., https://yourname.atlassian.net). This is combined with the 'Create Page Path'.
 
-# Product-specific settings
+# Product-specific settings, configured per-product in Spira
 productSettings:
   - settingTypeId: 1 # Plain text
     name: confluenceLinkFieldName
-    caption: Confluence Link Custom Field Name
-    position: 1 # Make this first? Or after space/parent settings? Your choice.
+    caption: Link Custom Field Name
+    position: 1
     placeholder: e.g., Custom_05
-    tooltip: Enter the exact field name (e.g., Custom_05) of the Requirement custom property that stores the existing Confluence page URL. (Required)
+    tooltip: The exact field name (e.g., Custom_05, Custom_12) of the Requirement custom property that stores an existing Confluence page URL. This field will be checked first.
   - settingTypeId: 1 # Plain text
     name: confluenceSpaceKey
-    # ... (keep this setting as before)
+    caption: Target Confluence Space Key
     position: 2
+    placeholder: e.g., SOFTWAREDE
+    tooltip: The Confluence Space Key where new pages should be created if no existing link is found. (Required for creating new pages)
   - settingTypeId: 4 # Integer
     name: confluenceParentPageId
-    # ... (keep this setting as before)
+    caption: Target Parent Page ID (Optional)
     position: 3
+    placeholder: e.g., 98424 (or leave blank)
+    tooltip: Optional. If specified, new Confluence pages will be created under this Confluence parent page ID.
   - settingTypeId: 1 # Plain text
     name: confluenceCreatePath
-    # ... (keep this setting as before)
+    caption: Confluence Create Page Path
     position: 4
+    placeholder: /wiki/create-content/page
+    tooltip: The specific path from your Confluence URL used to initiate page creation (e.g., /wiki/create-content/page). This is combined with the Base URL and query parameters. (Required for creating new pages)
 
 # Where the JavaScript runs
 pageContents:
