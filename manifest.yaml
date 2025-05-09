@@ -17,11 +17,26 @@ version: 0.1 # <-- Incremented version again
 settings:
   - settingTypeId: 1 # Plain text
     name: confluenceBaseUrl
-    caption: Confluence Base URL (Optional) # Max 50 chars!
+    caption: Confluence Base URL
     isSecure: false
     placeholder: https://your-instance.atlassian.net
     position: 1
-    tooltip: The base URL of your Confluence instance (e.g., https://yourname.atlassian.net). This is combined with the 'Create Page Path'.
+    tooltip: The base URL for Confluence API calls (e.g., https://yourname.atlassian.net). Required.
+  - settingTypeId: 1 # Plain text
+    name: confluenceApiEmail
+    caption: Confluence API Email (for Basic Auth)
+    isSecure: false
+    placeholder: your.email@example.com
+    position: 2
+    tooltip: If Confluence needs Basic Auth (email:token), enter the email associated with the API Token here. Check Confluence API docs.
+  - settingTypeId: 1 # Plain text
+    name: confluenceApiToken
+    caption: Confluence API Token / Password
+    isSecure: true
+    placeholder: Enter Confluence API Token
+    position: 3
+    tooltip: The Confluence API Token. Used as password for Basic Auth or as a Bearer token. Stored securely.
+
 
 # Product-specific settings, configured per-product in Spira
 productSettings:
